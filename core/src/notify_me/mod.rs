@@ -1,4 +1,6 @@
+use crate::git::GitRepo;
 
 pub fn notify_me() {
-    println!("hello world!");
+    let repo = GitRepo::new();
+    println!("{}", repo.git_dir().unwrap());
 }

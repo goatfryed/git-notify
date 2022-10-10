@@ -1,4 +1,5 @@
 mod notify_me;
+mod git;
 
 use clap::{Parser, Subcommand};
 use notify_me::notify_me;

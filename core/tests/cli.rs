@@ -1,5 +1,5 @@
 use std::env::set_current_dir;
-use std::fs::OpenOptions;
+use std::fs::{canonicalize, OpenOptions};
 use std::path::Path;
 use std::process::Command; // Run programs
 use assert_cmd::prelude::*; // Add methods on commands
@@ -18,6 +18,14 @@ fn notify_me_help() {
     run_baseline_test(
         "notify_me_help",
         ["me", "--help"]
+    );
+}
+
+#[test]
+fn notify_me() {
+    run_baseline_test(
+        "notify_me",
+        ["me"]
     );
 }
 
@@ -50,5 +58,5 @@ where I: IntoIterator<Item = &'a str>
     let is_equal = cmp(&output_file, &baseline_file, false)
         .unwrap();
 
-    assert!(is_equal, "unexpected output. Check {}", output_file.display())
+    assert!(is_equal, "unexpected output. Check {}", canonicalize(test_dir.join(output_file)).unwrap().display())
 }
