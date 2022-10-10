@@ -1,4 +1,4 @@
-# git-change-announcements
+# git-notify
 Find out, when your most relevant files change. once.
 
 # Project goals
@@ -14,24 +14,11 @@ This project is for you and your team, if the following feels familiar:
 
 Instead of security filters (e.g. CODEOWNERS),
 or some high level general file tracking with email alerts on your remote's main,
-git-file-subscriptions targets day-to-day work in your local source code. Don't ask, get told when important things change.
+git-notify targets day-to-day work in your local source code. Don't ask, get told when important things change.
 
 The main focus is to improve collaboration via doc as code.
 
-### Imagine
-You checkout a repository.
-You see the README.md that tells you all about project setup.
-You work in the project, get accustomed and never look back.
-One morning, you do your usual pull and an info pops up that the README.md changed.
-You take a look an notice that a new service got added that requires extra setup.
-You follow the steps and you're happy.
+## With IDEs in mind
+The goal is to implement a reusable core as a git extension that lets you track and retrieve changes based on your (controlled) view history.
 
-### But wait! Isn't that exactly git diff?
-you might say. That's displayed anyway on pull. What's the benefit?
-
-* Read less, now more. Let's be honest. Do you always read the whole diffs? Just find out the important bits!
-* Focus on IDE integration and tracking
-* Focus on multi branching work. I've read a change on another branch? I'm even the author? Get out of my way
-
-
-
+On top of that, we want to implement IDE plugins, that visualize and manage the core
