@@ -1,0 +1,6 @@
+Read all notifications
+
+Usage: git-notify me
+
+Options:
+  -h, --help  Print help information
