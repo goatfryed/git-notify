@@ -1,6 +1,12 @@
-use crate::git::GitRepo;
+use std::path::PathBuf;
+use crate::store::load_store;
 
 pub fn notify_me() {
-    let repo = GitRepo::new();
-    println!("{}", repo.git_dir().unwrap());
+    let store = load_store(PathBuf::from("./.git-notify")).unwrap();
+
+    for tracked_file in store.data.tracked_files {
+        for visited in tracked_file.visited {
+            println!("visited {} at {}", tracked_file.path, visited.commit);
+        }
+    }
 }

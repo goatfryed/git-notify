@@ -1,6 +1,7 @@
 mod notify_me;
 mod watch;
 mod git;
+mod store;
 
 use clap::{Parser, Subcommand};
 use notify_me::notify_me;
