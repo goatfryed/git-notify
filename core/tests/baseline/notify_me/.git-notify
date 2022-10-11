@@ -1,7 +1,7 @@
 {
-  "trackedFiles": [
+  "tracked_files": [
     {
-      "path": "/core/tests/baseline/README.md",
+      "path": "README.md",
       "visited": [
         {
           "commit": "ee26637b6e755705fe10ddf4a5f6148576402946"
