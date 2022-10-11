@@ -29,6 +29,14 @@ fn notify_me() {
     );
 }
 
+#[test]
+fn watch_file() {
+    run_baseline_test(
+        "watch_file",
+        ["watch", "README.md"]
+    );
+}
+
 fn run_baseline_test<'a,I>(test_name: &str, args: I)
 where I: IntoIterator<Item = &'a str>
 {
