@@ -1,4 +1,3 @@
-use std::fmt::format;
 use std::path::PathBuf;
 use crate::git::GitRepo;
 use crate::store::load_store;
