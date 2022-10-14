@@ -12,7 +12,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 > - Mention the project at local meetups and tell your friends/colleagues
 
 ## For hacktoberfest participants
-All kind of help is welcome. I'll label issue that i think might be suited especially, but please feel free to comment and take over everything that interests you or add own ideas.
+All kind of help is welcome. Please feel free to comment and take over everything that interests you or add own ideas.
 
 <!-- omit in toc -->
 ## Table of Contents
