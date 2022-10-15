@@ -1,4 +1,4 @@
-# git-notify
+# git-notify [![CI](https://github.com/goatfryed/git-notify/actions/workflows/CI.yml/badge.svg)](https://github.com/goatfryed/git-notify/actions/workflows/CI.yml)
 Find out, when your most relevant files change. once.
 
 # Project goals
