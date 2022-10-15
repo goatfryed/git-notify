@@ -2,7 +2,7 @@ use rustygit::error::GitError;
 use rustygit::Repository;
 
 pub struct GitRepo {
-    git_repo: Repository,
+    pub git_repo: Repository,
     git_dir: Result<String, GitError>,
 }
 
