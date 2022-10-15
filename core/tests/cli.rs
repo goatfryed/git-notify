@@ -1,9 +1,8 @@
-use std::env::set_current_dir;
-use std::fs::{canonicalize, OpenOptions};
+use std::fs;
+use std::fs::OpenOptions;
 use std::path::Path;
 use std::process::Command; // Run programs
 use assert_cmd::prelude::*; // Add methods on commands
-use filecmp::cmp;
 
 #[test]
 fn notify_help() {
@@ -49,22 +48,22 @@ where I: IntoIterator<Item = &'a str>
         .join("tests/baseline")
         .join(test_name);
 
-    set_current_dir(&test_dir)
-        .expect(&format!("couldn't change working dir to {}", test_dir.display()));
 
-    let baseline_file = Path::new("./expected.out");
-    let output_file = Path::new("./actual.out");
+    let baseline_file = test_dir.join("expected.out");
+    let output_file = test_dir.join("actual.out");
 
     let stdout = OpenOptions::new()
         .write(true).create(true).truncate(true)
         .open(&output_file)
         .unwrap_or_else(|e| panic!("failed to open output file {}\n{}", output_file.display(), e));
 
-    cmd.stdout(stdout)
+    cmd.current_dir(&test_dir)
+        .stdout(stdout)
         .assert().success();
 
-    let is_equal = cmp(&output_file, &baseline_file, false)
-        .unwrap();
+    let expected_out_filepath = baseline_file.to_str().unwrap();
+    let actual = fs::read_to_string(baseline_file.as_path()).expect("no actual.out generated");
+    let expected = fs::read_to_string(baseline_file.as_path()).expect("no expected.out defined");
 
-    assert!(is_equal, "unexpected output. Check {}", canonicalize(test_dir.join(output_file)).unwrap().display())
+    assert_eq!(expected, actual, "unexpected output. Check {}", expected_out_filepath)
 }

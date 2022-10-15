@@ -3,7 +3,7 @@ use crate::git::GitRepo;
 use crate::store::load_store;
 
 pub fn notify_me() {
-    let store = load_store(PathBuf::from("./.git-notify")).unwrap();
+    let store = load_store(PathBuf::from("./.git-notify")).expect("didn't find .git-notify");
 
     let repo = GitRepo::new();
 
