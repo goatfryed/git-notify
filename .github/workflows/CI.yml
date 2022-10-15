@@ -1,0 +1,52 @@
+name: Rust
+
+on:
+  push:
+    branches:
+    - main
+    - feature/ci
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build-core:
+    name: Build + Test Core
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: core
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        override: true
+        components: rustfmt, clippy
+
+    - name: Set up cargo cache
+      uses: actions/cache@v3
+      continue-on-error: false
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+        restore-keys: ${{ runner.os }}-cargo-
+
+    - name: Build
+      run: cargo build
+
+    - name: Run tests
+      run: cargo test
+      # TODO: Remove once tests are stable
+      continue-on-error: true
