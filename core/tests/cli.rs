@@ -1,8 +1,16 @@
 use std::fs;
 use std::fs::OpenOptions;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::process::Command; // Run programs
 use assert_cmd::prelude::*; // Add methods on commands
+
+#[test]
+fn confirm() {
+    run_baseline_test(
+        "confirm",
+        ["confirm", "info.txt"]
+    );
+}
 
 #[test]
 fn confirm_help() {
@@ -56,6 +64,8 @@ where I: IntoIterator<Item = &'a str>
         .join("tests/baseline")
         .join(test_name);
 
+    setup_storage_file(&test_dir);
+
 
     let baseline_file = test_dir.join("expected.out");
     let output_file = test_dir.join("actual.out");
@@ -74,4 +84,13 @@ where I: IntoIterator<Item = &'a str>
     let expected = fs::read_to_string(baseline_file.as_path()).expect("no expected.out defined");
 
     assert_eq!(expected, actual, "unexpected output. Check {}", expected_out_filepath)
+}
+
+fn setup_storage_file(test_dir: &PathBuf) {
+    let storage_template = test_dir.join(".git-notify.initial");
+    if !storage_template.exists() {
+        return;
+    }
+
+    fs::copy(storage_template, test_dir.join(".git-notify")).unwrap();
 }
