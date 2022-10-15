@@ -1,10 +1,10 @@
 {
   "tracked_files": [
     {
-      "path": "README.md",
+      "path": "info.txt",
       "visited": [
         {
-          "commit": "ee26637b6e755705fe10ddf4a5f6148576402946"
+          "commit": "387a7da83526a9ca3d137dce7d0a7878c3978902"
         }
       ]
     }
