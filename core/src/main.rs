@@ -29,6 +29,13 @@ pub enum Commands {
         /// Path of the file to track
         file: String,
     },
+
+    /// Confirm a file change so that it doesn't appear until next update
+    #[command(about)]
+    Confirm {
+        /// Path of the file to track
+        file: String,
+    }
 }
 
 fn main() {
@@ -40,6 +47,9 @@ fn main() {
         },
         Commands::Watch {file} => {
             watch::watch(file);
-        }
+        },
+        Commands::Confirm {file} => {
+            println!("closing {}", file)
+        },
     }
 }

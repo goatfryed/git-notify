@@ -5,6 +5,14 @@ use std::process::Command; // Run programs
 use assert_cmd::prelude::*; // Add methods on commands
 
 #[test]
+fn confirm_help() {
+    run_baseline_test(
+        "confirm_help",
+        ["confirm", "--help"]
+    );
+}
+
+#[test]
 fn notify_help() {
     run_baseline_test(
         "notify_help",
@@ -57,7 +65,7 @@ where I: IntoIterator<Item = &'a str>
         .open(&output_file)
         .unwrap_or_else(|e| panic!("failed to open output file {}\n{}", output_file.display(), e));
 
-    cmd.current_dir(&test_dir)
+    cmd.current_dir(test_dir)
         .stdout(stdout)
         .assert().success();
 

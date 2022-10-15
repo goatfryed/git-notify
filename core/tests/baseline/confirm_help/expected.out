@@ -1,0 +1,9 @@
+Confirm a file change so that it doesn't appear until next update
+
+Usage: git-notify confirm <FILE>
+
+Arguments:
+  <FILE>  Path of the file to track
+
+Options:
+  -h, --help  Print help information
