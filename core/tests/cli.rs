@@ -51,6 +51,7 @@ where I: IntoIterator<Item = &'a str>
 
     let baseline_file = test_dir.join("expected.out");
     let output_file = test_dir.join("actual.out");
+    let git_dir = test_dir.join("git-dir");
 
     let stdout = OpenOptions::new()
         .write(true).create(true).truncate(true)
@@ -58,6 +59,7 @@ where I: IntoIterator<Item = &'a str>
         .unwrap_or_else(|e| panic!("failed to open output file {}\n{}", output_file.display(), e));
 
     cmd.current_dir(&test_dir)
+        .env("GIT_DIR", git_dir.to_str().unwrap())
         .stdout(stdout)
         .assert().success();
 
