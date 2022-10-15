@@ -62,7 +62,7 @@ where I: IntoIterator<Item = &'a str>
         .assert().success();
 
     let expected_out_filepath = baseline_file.to_str().unwrap();
-    let actual = fs::read_to_string(baseline_file.as_path()).expect("no actual.out generated");
+    let actual = fs::read_to_string(output_file.as_path()).expect("no actual.out generated");
     let expected = fs::read_to_string(baseline_file.as_path()).expect("no expected.out defined");
 
     assert_eq!(expected, actual, "unexpected output. Check {}", expected_out_filepath)
